@@ -67,11 +67,11 @@ RUN addgroup -S redmine \
 
 VOLUME ${REDMINE_INSTALL_DIR}/files
 
-COPY assets/build/ ${REDMINE_BUILD_DIR}/
-RUN bash ${REDMINE_BUILD_DIR}/install.sh
+# COPY assets/build/ ${REDMINE_BUILD_DIR}/
+# RUN bash ${REDMINE_BUILD_DIR}/install.sh
 
 COPY assets/runtime/ ${REDMINE_RUNTIME_DIR}/
-COPY assets/tools/ /usr/bin/
+# COPY assets/tools/ /usr/bin/
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
