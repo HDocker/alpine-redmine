@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+source ${REDMINE_RUNTIME_DIR}/functions
+install_plugins
+install_themes
+
 case "$1" in
 	unicorn|rails|rake)
 		if [ ! -f './config/database.yml' ]; then
