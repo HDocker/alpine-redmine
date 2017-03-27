@@ -74,9 +74,9 @@ VOLUME ["${REDMINE_DATA_DIR}", "${REDMINE_LOG_DIR}"]
 COPY assets/runtime/ ${REDMINE_RUNTIME_DIR}/
 # COPY assets/tools/ /usr/bin/
 
-COPY docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /sbin/docker-entrypoint.sh
+RUN chmod 755 /sbin/docker-entrypoint.sh
+ENTRYPOINT ["/sbin/docker-entrypoint.sh"]
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
-REDMINE_DATA_DIR
