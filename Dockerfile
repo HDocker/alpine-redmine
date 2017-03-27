@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Alexey Ivanov <lexa.ivanov@gmail.com>
 
-ENV REDMINE_VERSION=3.3.0 \
+ENV REDMINE_VERSION=3.3.2 \
     REDMINE_USER="redmine" \
     REDMINE_HOME="/home/redmine" \
     REDMINE_LOG_DIR="/var/log/redmine" \
@@ -65,7 +65,8 @@ RUN addgroup -S redmine \
 	&& rm -rf /root/* `gem env gemdir`/cache \
         && apk --purge del .build-deps
 
-VOLUME ${REDMINE_INSTALL_DIR}/files
+# VOLUME ${REDMINE_INSTALL_DIR}/files
+VOLUME ["${REDMINE_DATA_DIR}", "${REDMINE_LOG_DIR}"]
 
 # COPY assets/build/ ${REDMINE_BUILD_DIR}/
 # RUN bash ${REDMINE_BUILD_DIR}/install.sh
@@ -78,3 +79,4 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
+REDMINE_DATA_DIR
